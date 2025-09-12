@@ -12,16 +12,31 @@ console.log("Sum of array elements:");
 let sum = arrInt.reduce((acc, num) => acc + num, 0);
 console.log(sum);
 
+class Person {
+    constructor(id, name, age) {
+        this.id = id;
+        this.name = name;
+        this.age = age;
+    }
 
-const listPerson = [{ id: 1, name: "Alice", age: 28 }, { id: 2, name: "Bob", age: 34 }, { id: 3, name: "Charlie", age: 22 }, { id: 4, name: "Diana", age: 19 }];
+    showInfo() {
+        console.log(`ID: ${this.id}, Name: ${this.name}, Age: ${this.age}`);
+    }
+}
+
+const listPerson = [
+    new Person(1, "Alice", 28),
+    new Person(2, "Bob", 34),
+    new Person(3, "Charlie", 22),
+    new Person(4, "Diana", 19)
+];
+
 console.log("List Person:");
-listPerson.forEach(person => {
-    console.log(`ID: ${person.id}, Name: ${person.name}, Age: ${person.age}`);
-});
+listPerson.forEach(person => person.showInfo());
+
 console.log("Persons older than 20:");
-listPerson.filter(person => person.age > 20).forEach(person => {
-    console.log(`ID: ${person.id}, Name: ${person.name}, Age: ${person.age}`);
-});
+listPerson.filter(person => person.age > 20).forEach(person => person.showInfo());
+
 let totalAge = listPerson.reduce((acc, person) => acc + person.age, 0);
 console.log(`Total Age: ${totalAge}`);
 
