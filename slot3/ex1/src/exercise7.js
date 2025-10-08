@@ -10,9 +10,12 @@ const companies = [
   { name: "Company Nine", category: "Retail", start: 1981, end: 1989 }
 ];
 const company0New = { ...companies[0], start: companies[0].start + 1 };
-function concatAll(...arrays) {
-    return [].concat(...arrays);
-}
+const concatAll = (...arrays) =>{
+  return arrays.reduce((acc, array) => {
+    array.forEach(element => acc.push(element));
+    return acc;
+  }, []);
+};
 console.log("company[0]:",companies[0]);
 console.log("company0New:",company0New);
 console.log("concatAll:",concatAll([1,2],[3],[4,5])); 

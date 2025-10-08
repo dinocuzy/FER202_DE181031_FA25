@@ -15,3 +15,4 @@ companiesSort.slice(0,3).forEach(element => {
     console.log(element.name, element.end);
 });
 
+

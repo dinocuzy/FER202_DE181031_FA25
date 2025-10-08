@@ -15,6 +15,10 @@ function Exercise4() {
     ];
     const teens = people.filter(({ age }) => age >= 13 && age <= 19)
         .map(({ name, age }) => `Name: ${name} Age: ${age}`);
+    const filterAges = people.filter(({ age }) => age > 15);
+    const seccond=people[1];
+    const isTeen=people=>age>=13 && age<=19;
+    
     //6.Sort + slice – doanh nghiệp theo năm kết thúc
     const companies = [
         { name: "Company One", category: "Finance", start: 1981, end: 2004 },
@@ -35,12 +39,12 @@ function Exercise4() {
     //8.Reduce nâng cao – thống kê tuổi
     const ageStats = ages.reduce((stats, age) => {
         stats.sum += age;
-        if(age < stats.min) stats.min = age;
-        if(age > stats.max) stats.max = age;
-        if(age>=13 && age<=19) stats.bucket.teen++;
-        if(age>=20) stats.bucket.adult++;
+        if (age < stats.min) stats.min = age;
+        if (age > stats.max) stats.max = age;
+        if (age >= 13 && age <= 19) stats.bucket.teen++;
+        if (age >= 20) stats.bucket.adult++;
         return stats;
-    },{
+    }, {
         sum: 0,
         min: Infinity,
         max: -Infinity,
@@ -50,54 +54,54 @@ function Exercise4() {
         }
     });
 
-return (
-    <div>
-        <h2>Exercise 4</h2>
-        <p>4.Destructuring array + skip + default</p>
-        <p>First: {first}</p>
-        <p>Third: {third}</p>
-        <p>Rest ages: {restAges.join(', ')}</p>
-        <p>5.Map + filter – danh sách teen</p>
-        <p>Teens List</p>
-        <ul>
-            {teens.map((teen, index) => (
-                <li key={index}>{teen}</li>
-            ))}
-        </ul>
-        <p>6.Sort + slice – doanh nghiệp theo năm kết thúc</p>
-        <p>Top 3 companies that ended earliest</p>
-        <table border="1" cellPadding="5" cellSpacing="0">
-            <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>Category</th>
-                    <th>Start</th>
-                    <th>End</th>
-                </tr>
-            </thead>
-            <tbody>
-                {sortedCompanies.map((company, index) => (
-                    <tr key={index}>
-                        <td>{company.name}</td>
-                        <td>{company.category}</td>
-                        <td>{company.start}</td>
-                        <td>{company.end}</td>
-                    </tr>
+    return (
+        <div>
+            <h2>Exercise 4</h2>
+            <p>4.Destructuring array + skip + default</p>
+            <p>First: {first}</p>
+            <p>Third: {third}</p>
+            <p>Rest ages: {restAges.join(', ')}</p>
+            <p>5.Map + filter – danh sách teen</p>
+            <p>Teens List</p>
+            <ul>
+                {teens.map((teen, index) => (
+                    <li key={index}>{teen}</li>
                 ))}
-            </tbody>
-        </table>
-        <p>7.Spread vs. rest – bất biến & gộp mảng</p>
-        <p>Original Company One : {JSON.stringify(companies[0])}</p>
-        <p>Updated Company One : {JSON.stringify(company0New)}</p>
-        <p>Concatenated arrays: {concatAll([[1, 2], [3, 4], [5]]).join(', ')}</p>
-        <p>8.Reduce nâng cao – thống kê tuổi</p>
-        <p>Age: {ages.join(', ')}</p>
-        <p>Tổng tuổi: {ageStats.sum}</p>
-        <p>Tuổi nhỏ nhất: {ageStats.min}</p>
-        <p>Tuổi lớn nhất: {ageStats.max}</p>
-        <p>Số người tuổi teen: {ageStats.bucket.teen}</p>
-        <p>Số người tuổi trưởng thành: {ageStats.bucket.adult}</p>
-    </div>
-);
+            </ul>
+            <p>6.Sort + slice – doanh nghiệp theo năm kết thúc</p>
+            <p>Top 3 companies that ended earliest</p>
+            <table border="1" cellPadding="5" cellSpacing="0">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Category</th>
+                        <th>Start</th>
+                        <th>End</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {sortedCompanies.map((company, index) => (
+                        <tr key={index}>
+                            <td>{company.name}</td>
+                            <td>{company.category}</td>
+                            <td>{company.start}</td>
+                            <td>{company.end}</td>
+                        </tr>
+                    ))}
+                </tbody>
+            </table>
+            <p>7.Spread vs. rest – bất biến & gộp mảng</p>
+            <p>Original Company One : {JSON.stringify(companies[0])}</p>
+            <p>Updated Company One : {JSON.stringify(company0New)}</p>
+            <p>Concatenated arrays: {concatAll([[1, 2], [3, 4], [5]]).join(', ')}</p>
+            <p>8.Reduce nâng cao – thống kê tuổi</p>
+            <p>Age: {ages.join(', ')}</p>
+            <p>Tổng tuổi: {ageStats.sum}</p>
+            <p>Tuổi nhỏ nhất: {ageStats.min}</p>
+            <p>Tuổi lớn nhất: {ageStats.max}</p>
+            <p>Số người tuổi teen: {ageStats.bucket.teen}</p>
+            <p>Số người tuổi trưởng thành: {ageStats.bucket.adult}</p>
+        </div>
+    );
 }
 export default Exercise4;
