@@ -5,7 +5,7 @@ import HomePage from './pages/HomePage.jsx';
 
 function App() {
   return (
-    <div>
+    <div className="App bg-dark text-white">
       <HomePage />
       <FooterPage />
     </div>
