@@ -112,7 +112,7 @@ function MovieCard() {
                 className="text-dark"
             >
                 {selected &&
-                    <>
+                    <div className="bg-dark text-light p-3 rounded  ">
                         <Modal.Header closeButton>
                             <Modal.Title>{selected.title}</Modal.Title>
                         </Modal.Header>
@@ -120,7 +120,7 @@ function MovieCard() {
                             <img
                                 src={selected.img}
                                 alt={selected.title}
-                                className="img-fluid rounded mb-3"
+                                className="img-fluid rounded mb-3 d-block mx-auto"
                             />
                             <p>
                                 <strong>Country: </strong> {selected.country}
@@ -137,15 +137,20 @@ function MovieCard() {
                             <p>
                                 <strong>Description: </strong> {selected.description}
                             </p>
+                            <Button
+                                variant="warning"
+                                onClick={() => handleAddFavourite(selected)}
+                            >
+                                Add To Favourites
+                            </Button>
                         </Modal.Body>
                         <Modal.Footer>
                             <Button variant="secondary" onClick={() => setShowModal(false)}>
                                 Close
                             </Button>
                         </Modal.Footer>
-                    </>
+                    </div>
                 }
-
             </Modal>
 
         </div >

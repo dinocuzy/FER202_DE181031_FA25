@@ -8,10 +8,9 @@ export default function HomePage() {
             <HomeCarousel />
             <div className="container py-5 bg">
                 <h4 className="text-warning mb-3 text-center fw-bold" style={{ fontSize: "3rem" }}>Featured Movies Collections</h4>
-                <p className="text-secondary text-center mb-4 ">
+                <p className="text-secondary text-center text-light mb-4 ">
                     Thêm thông tin về các bộ sưu tập phim nổi bật ở đây.
                 </p>
-
                 <MovieCard />
             </div>
         </div>
