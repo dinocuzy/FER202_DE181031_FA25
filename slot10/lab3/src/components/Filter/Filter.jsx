@@ -3,14 +3,14 @@ function Filter({ onSearch, onFilter, onSort }) {
     return (
         <Card className="bg-dark text-light mb-3 p-3 shadow-sm border-1 border-secondary">
             <Row className="g-3">
-                <Col md={4}>
+                <Col md={6}>
                     <Form.Control
                         type="text"
                         placeholder="Search by title or description..."
                         onChange={(e) => onSearch(e.target.value)}
                     />
                 </Col>
-                <Col md={4}>
+                <Col md={3}>
                     <Form.Select
                         onChange={(e) => onFilter(e.target.value)}
                     >

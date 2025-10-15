@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { BiSearch, BiHeart, BiUser, BiLock } from "react-icons/bi";
 function WebNavbar() {
     return (
-        <Navbar bg="dark" variant="dark" expand="lg" className="mb-4">
+        <Navbar bg="dark" variant="dark" expand="lg" className="py-2 shadow-lg">
             <Container>
                 <Navbar.Brand as={Link} to="/" className="fw-bold fs-3 text-warning">
                     MovieApp
