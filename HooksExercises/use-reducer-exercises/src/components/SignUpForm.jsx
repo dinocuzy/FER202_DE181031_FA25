@@ -1,5 +1,7 @@
-import { Form, Row, Col, Button, Card, Container, Modal, Toast } from 'react-bootstrap';
+import { Form, Row, Col, Button, Card, Container} from 'react-bootstrap';
 import React, { useReducer } from 'react';
+import ModalComponent from './ModalComponent';
+import ToastComponent from './ToastComponent';
 const initialState = {
     username: '',
     email: '',
@@ -190,33 +192,18 @@ const SignUpForm = () => {
                     </Form>
                 </Card.Body>
             </Card>
-            <Modal show={state.showModal} onHide={handleCloseModal} centered>
-                <Modal.Header closeButton>
-                    <Modal.Title>Sign Up Successful</Modal.Title>
-                </Modal.Header>
-                <Modal.Body>
-                    <p>Welcome, {state.username}! Your account has been created successfully.</p>
-                    <p>Your username is: {state.username}</p>
-                    <p>Your email is: {state.email}</p>
-                    <p>Your password is: {state.password}</p>
-                </Modal.Body>
-            </Modal>
-            <Toast
-                onClose={handleCloseToast}
+            <ModalComponent
+                show={state.showModal}
+                handleClose={handleCloseModal}
+                title="Sign Up Successful"
+                body={`Welcome, ${state.username}!`}
+            />
+            <ToastComponent
                 show={state.showToast}
-                delay={3000}
-                autohide
-                style={{ position: 'fixed', bottom: '20px', right: '20px' }}
-                className="bg-success text-white"
-            >
-                <Toast.Header>
-                    <strong className="mr-auto">Sign Up Result</strong>
-                    <small>Just now</small>
-                </Toast.Header>
-                <Toast.Body>
-                    Sign up successful! Welcome, {state.username}.
-                </Toast.Body>
-            </Toast>
+                handleClose={handleCloseToast}
+                title="Sign Up Result"
+                body="Sign Up successful! Welcome, {state.username}."
+            />
         </Container>
     );
 };

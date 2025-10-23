@@ -34,13 +34,17 @@ const initialState = {
     isAnswered: false,
     timeleft: 10,
     interval: null,
+    start: false,
 };
 
-// ✅ Biến toàn cục chống timer trùng
 let timeRunning = false;
 
 function reducer(state, action) {
     switch (action.type) {
+        case 'start': {
+            return { ...state, start: true };
+        }
+
         case 'answerQuestion': {
             if (state.isAnswered) return state;
             const isCorrect = action.payload === state.questions[state.currentQuestion].answer;
@@ -108,11 +112,12 @@ const QuestionBank = () => {
         showScore,
         isAnswered,
         timeleft,
-        interval
+        interval,
+        start,
     } = state;
 
     const startTimer = () => {
-        if (timeRunning) return; // ✅ không tạo lại nếu timer đang chạy
+        if (timeRunning) return;
         clearInterval(interval);
         timeRunning = true;
         const timer = setInterval(() => {
@@ -120,6 +125,10 @@ const QuestionBank = () => {
         }, 1000);
         dispatch({ type: 'setInterval', payload: timer });
     };
+    const handleStart = () => {
+        dispatch({ type: 'start' });
+    };
+
 
     const handleAnswerSelect = (option) => {
         dispatch({ type: 'answerQuestion', payload: option });
@@ -135,7 +144,7 @@ const QuestionBank = () => {
         setTimeout(() => startTimer(), 200);
     };
 
-    if (!showScore && !isAnswered && !interval && !timeRunning) {
+    if (start && !showScore && !isAnswered && !interval && !timeRunning) {
         startTimer();
     }
 
@@ -175,6 +184,18 @@ const QuestionBank = () => {
                         </Button>
                     </div>
                 ) : (
+                    !start ? (
+                        <div className="text-center">
+                            <h5>Quiz Game</h5>
+                            <Button variant="primary" onClick={handleStart}>
+                                Start Quiz
+                            </Button>
+                        </div>
+                    ) : null
+                )}
+
+                {!showScore && start && (
+
                     <div>
                         <div className="d-flex justify-content-between align-items-center mb-4">
                             <h5 className="mb-0">Score: {score}</h5>

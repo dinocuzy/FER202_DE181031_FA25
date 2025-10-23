@@ -1,5 +1,7 @@
 import React, { useReducer } from "react";
-import { Form, Button, Row, Col, Card, Container, Modal, Toast } from "react-bootstrap";
+import { Form, Button, Row, Col, Card, Container } from "react-bootstrap";
+import ModalComponent from "./ModalComponent";
+import ToastComponent from "./ToastComponent";
 const initialState = { username: "", password: "", showModal: false, error: {}, showToast: false };
 function reducer(state, action) {
     switch (action.type) {
@@ -107,36 +109,20 @@ const LoginForm = () => {
                     </Card>
                 </Col>
             </Row>
-
-            <Modal show={state.showModal} onHide={handleCloseModal} centered>
-                <Modal.Header closeButton>
-                    <Modal.Title>Login Successful</Modal.Title>
-                </Modal.Header>
-                <Modal.Body>
-                    <p>Welcome, {state.username}!</p>
-                </Modal.Body>
-                <Modal.Footer>
-                    <Button variant="secondary" onClick={handleCloseModal}>
-                        Close
-                    </Button>
-                </Modal.Footer>
-            </Modal>
-
-            <Toast
-                onClose={handleCloseToast}
+            <ModalComponent
+                show={state.showModal}
+                handleClose={handleCloseModal}
+                title="Login Successful"
+                body={`
+                    Welcome, ${state.username}!
+                `}
+            />
+            <ToastComponent
                 show={state.showToast}
-                delay={3000}
-                autohide
-                style={{ position: 'fixed', top: 20, right: 20, minWidth: '200px', color: '#155724', backgroundColor: '#d4edda', borderColor: '#c3e6cb' }}
-            >
-                <Toast.Header>
-                    <strong className="mr-auto">Login Result </strong>
-                    <small>Just now</small>
-                </Toast.Header>
-                <Toast.Body>
-                    Login successful! Welcome, {state.username}.
-                </Toast.Body>
-            </Toast>
+                handleClose={handleCloseToast}
+                title="Login Result"
+                body="Login successful! Welcome, {state.username}."
+            />
         </Container>
     );
 };
