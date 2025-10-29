@@ -1,25 +1,35 @@
 import { Navbar, Container, Nav, Form, Button, NavDropdown } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { BiSearch, BiHeart, BiUser, BiLock } from "react-icons/bi";
 function WebNavbar() {
     return (
         <Navbar bg="dark" variant="dark" expand="lg" className="py-2 shadow-lg">
             <Container>
-                <Navbar.Brand as={Link} to="/" className="fw-bold fs-3 text-warning">
+                <Navbar.Brand as={NavLink} to="/" className="fw-bold fs-3 text-warning">
                     MovieApp
                 </Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="me-auto">
-                        <Nav.Link as={Link} to="/" className="mx-2">
-                            Home
-                        </Nav.Link>
-                        <Nav.Link as={Link} to="/about" className="mx-2">
-                            About
-                        </Nav.Link>
-                        <Nav.Link as={Link} to="/contact" className="mx-2">
-                            Contact
-                        </Nav.Link>
+                        <NavLink
+                            to="/"
+                            className={({ isActive }) => (isActive ? 'nav-link active' : 'nav-link')}
+                        >Home</NavLink>
+                        <NavLink
+                            to="/movies"
+                            className={({ isActive }) => (isActive ? 'nav-link active' : 'nav-link')}
+                        >Movies</NavLink>
+                        <NavLink
+                            to="/contact"
+                            className={({ isActive }) => (isActive ? 'nav-link active' : 'nav-link')}
+                        >Contact
+                        </NavLink>
+                        <NavLink
+                        to="/about"
+                        className={({isActive})=>(isActive ? 'nav-link active' : 'nav-link')}
+                        >About
+                        </NavLink>
+
                     </Nav>
                     <Form className="d-flex me-3">
                         <Form.Control type="text" placeholder="Quick search..." size="sm" className="me-2" />
@@ -28,7 +38,7 @@ function WebNavbar() {
                     <Nav>
                         <NavDropdown title={<span><BiUser /> Account</span>} id="account-dropdown">
                             <NavDropdown.Item>Manage Your Profile</NavDropdown.Item>
-                            <NavDropdown.Item as={Link} to="/account">Build Your Account</NavDropdown.Item>
+                            <NavDropdown.Item as={NavLink} to="/account">Build Your Account</NavDropdown.Item>
                             <NavDropdown.Item>Change Password</NavDropdown.Item>
                             <NavDropdown.Item></NavDropdown.Item>
                         </NavDropdown>
@@ -39,7 +49,7 @@ function WebNavbar() {
             </Container>
         </Navbar>
     )
-    ;
+        ;
 }
 export default WebNavbar;
 

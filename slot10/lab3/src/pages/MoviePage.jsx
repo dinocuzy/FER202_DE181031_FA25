@@ -3,7 +3,7 @@ import { Row, Col, Toast, Modal, Button } from "react-bootstrap";
 import MovieCard from "../components/Movie/MovieCard";
 import { cardMovies } from "../data/card";
 
-function MoviePage({ searchText, filterYear, sortOption }) {
+function MoviePage({ searchText = "", filterYear = "all", sortOption = "" }) {
     const [showToast, setShowToast] = useState(false);
     const [showModal, setShowModal] = useState(false);
     const [selected, setSelected] = useState(null);
@@ -25,9 +25,11 @@ function MoviePage({ searchText, filterYear, sortOption }) {
     };
 
     let filteredMovies = cardMovies.filter((movie) => {
-        const matchSearch =
-            movie.title.toLowerCase().includes(searchText.toLowerCase()) ||
-            movie.description.toLowerCase().includes(searchText.toLowerCase());
+        const title = movie?.title?.toLowerCase() || "";
+        const desc = movie?.description?.toLowerCase() || "";
+        const search = searchText?.toLowerCase() || "";
+
+        const matchSearch = title.includes(search) || desc.includes(search);
 
         let matchFilter = true;
         if (filterYear === "<=2000") matchFilter = movie.year <= 2000;
@@ -59,7 +61,6 @@ function MoviePage({ searchText, filterYear, sortOption }) {
         default:
             break;
     }
-
 
     if (filteredMovies.length === 0)
         return <p className="text-center text-muted">No movies found.</p>;
@@ -119,10 +120,12 @@ function MoviePage({ searchText, filterYear, sortOption }) {
                                 Add To Favourites
                             </Button>
                         </Modal.Body>
-
                     </div>
                 )}
             </Modal>
+            <Button>
+                Back to Home
+            </Button>
         </div>
     );
 }
