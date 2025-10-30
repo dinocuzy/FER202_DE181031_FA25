@@ -4,6 +4,7 @@ import { Container } from 'react-bootstrap';
 import { MovieProvider } from '../contexts/MovieContext';
 import MovieForm from '../components/MovieForm';
 import MovieTable from '../components/MovieTable';
+import FilterBar from '../components/FilterBar';
 
 
 // Component con hiển thị nội dung, được bọc bởi Provider
@@ -13,6 +14,9 @@ const MovieManagerContent = () => {
             <h1 className="text-center mb-4">🎬 Quản lý Phim (Context + useReducer + Axios)</h1>
 
             <MovieForm />
+            <hr />
+            <h5>Search and Filter movies...</h5>
+            <FilterBar />
 
             <h2 className="mt-4">Danh sách Phim</h2>
 
